@@ -1,20 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import RootStack from "./navigators/RootStack";
+import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
+import { Provider } from "react-redux";
+import { Store } from "./redux/store";
 
 export default function App() {
+  let [fontsLoader] = useFonts({
+    anirb: require("./assets/fonts/anirb.ttf"),
+  });
+
+  if (!fontsLoader) {
+    return <AppLoading />;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={Store}>
+      <RootStack />
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

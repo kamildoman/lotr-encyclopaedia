@@ -1,0 +1,75 @@
+import React, { FunctionComponent } from "react";
+import styled from "styled-components/native";
+import Background from "../assets/backgrounds/books.jpg";
+import { useSelector } from "react-redux";
+import { Store } from "../redux/store";
+type RootState = ReturnType<typeof Store.getState>;
+import { RootStackParamList } from "../navigators/RootStack";
+import { StackScreenProps } from "@react-navigation/stack";
+
+type Props = StackScreenProps<RootStackParamList, "SingleBooksChapter">;
+
+const ChaptersContainer = styled.ScrollView`
+  width: 100%;
+  height: 100%;
+`;
+
+const TextWrap = styled.View`
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 15px;
+  border-radius: 20px;
+`;
+
+const BookText = styled.Text`
+  font-size: 20px;
+  font-family: anirb;
+  text-align: center;
+  color: #fef7e7;
+  padding: 10px 15px;
+`;
+
+const TitleText = styled(BookText)`
+  margin-bottom: 5px;
+`;
+
+const TitleWrap = styled(TextWrap)`
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+`;
+
+const BooksBackground = styled.ImageBackground`
+  width: 100%;
+  height: 100%;
+`;
+
+const SingleBooksChapter: FunctionComponent<Props> = ({ route }) => {
+  const { books, chapters } = useSelector(
+    (state: RootState) => state.booksReducer
+  );
+
+  return (
+    <BooksBackground source={Background} resizeMode="cover" blurRadius={3}>
+      <ChaptersContainer>
+        <TitleWrap>
+          <TitleText>{route.params.name} chapters:</TitleText>
+        </TitleWrap>
+        {chapters
+          .filter((singleChapter: { book: string }) => {
+            if (singleChapter["book"] === route.params._id) {
+              return true;
+            }
+          })
+          .map((chapter: { chapterName: string }, number: number) => (
+            <TextWrap key={number}>
+              <BookText key={number}>
+                {number + 1}. {chapter.chapterName}
+              </BookText>
+            </TextWrap>
+          ))}
+      </ChaptersContainer>
+    </BooksBackground>
+  );
+};
+
+export default SingleBooksChapter;
