@@ -3,17 +3,15 @@ import styled from "styled-components/native";
 import Background from "../assets/backgrounds/books.jpg";
 import { useSelector } from "react-redux";
 import { Store } from "../redux/store";
-type RootState = ReturnType<typeof Store.getState>;
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
 import { BackgroundImage, CenterText } from "../components/shared";
 
 type Props = StackScreenProps<RootStackParamList, "SingleBooksChapter">;
+type RootState = ReturnType<typeof Store.getState>;
 
 const SingleBooksChapter: FunctionComponent<Props> = ({ route }) => {
-  const { books, chapters } = useSelector(
-    (state: RootState) => state.booksReducer
-  );
+  const { chapters } = useSelector((state: RootState) => state.booksReducer);
 
   return (
     <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>

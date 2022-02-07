@@ -6,7 +6,6 @@ import { AntDesign } from "@expo/vector-icons";
 import { Animated } from "react-native";
 import { useSelector } from "react-redux";
 import { Store } from "../redux/store";
-type RootState = ReturnType<typeof Store.getState>;
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
 import {
@@ -17,7 +16,9 @@ import {
   RightContainer,
 } from "../components/shared";
 import { colors } from "../components/colors";
+
 type Props = StackScreenProps<RootStackParamList, "SingleCharacter">;
+type RootState = ReturnType<typeof Store.getState>;
 
 const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -26,7 +27,7 @@ const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
   const quotes = useSelector((state: RootState) => state.quotesReducer);
 
   function findQuotes() {
-    let charQuotes = quotes["quotes"].filter(
+    const charQuotes = quotes["quotes"].filter(
       (singleQuote) => singleQuote["character"] === route.params._id
     );
     setCharacterQuotes(charQuotes);
@@ -87,7 +88,7 @@ const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
               ))}
 
           {characterQuotes.length < 1 && (
-            <TitleText>The character doesn't have any quotes</TitleText>
+            <TitleText>The character does not have any quotes</TitleText>
           )}
 
           {characterQuotes.length > 0 && characterQuotes.length > pageNumber && (

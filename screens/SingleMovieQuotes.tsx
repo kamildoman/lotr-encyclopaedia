@@ -7,7 +7,6 @@ import { AntDesign } from "@expo/vector-icons";
 import { Animated } from "react-native";
 import { useSelector } from "react-redux";
 import { Store } from "../redux/store";
-type RootState = ReturnType<typeof Store.getState>;
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
 import {
@@ -20,6 +19,7 @@ import {
 import { colors } from "../components/colors";
 
 type Props = StackScreenProps<RootStackParamList, "SingleMovieQuotes">;
+type RootState = ReturnType<typeof Store.getState>;
 
 const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -46,11 +46,11 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
     animateArrowLeft();
   }, []);
 
-  const quotes: any = useSelector((state: RootState) => state.quotesReducer);
+  const quotes = useSelector((state: RootState) => state.quotesReducer);
   const characters = useSelector((state: RootState) => state.charactersReducer);
 
   function findCharacter(quote: any) {
-    let ch: CharacterProps = characters["characters"].find(
+    const character: CharacterProps = characters["characters"].find(
       (char: CharacterProps) => char["_id"] === quote["character"]
     )!;
 
@@ -59,7 +59,7 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
         key={quote["_id"]}
         _id={quote["_id"]}
         dialog={quote["dialog"]}
-        character={ch}
+        character={character}
         movie={quote["movie"]}
       />
     );

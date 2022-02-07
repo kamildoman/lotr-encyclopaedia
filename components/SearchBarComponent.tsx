@@ -4,12 +4,13 @@ import RNPickerSelect from "react-native-picker-select";
 import { Alert } from "react-native";
 import { useSelector } from "react-redux";
 import { Store } from "../redux/store";
-type RootState = ReturnType<typeof Store.getState>;
 import { useNavigation } from "@react-navigation/native";
 import { Props as MainPageProps } from "../screens/MainPage";
-var stringSimilarity = require("string-similarity");
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
+
+var stringSimilarity = require("string-similarity");
+type RootState = ReturnType<typeof Store.getState>;
 
 const SearchContainer = styled.View`
   width: 90%;
