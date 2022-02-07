@@ -17,7 +17,7 @@ import Background from "../assets/backgrounds/mainpage.jpg";
 import { BackgroundImage, CustomButton } from "../components/shared";
 import { colors } from "../components/colors";
 
-export type Props = StackScreenProps<RootStackParamList, "Login">;
+type Props = StackScreenProps<RootStackParamList, "Login">;
 
 const Login: FunctionComponent<Props> = ({ navigation }) => {
   let token = null;

@@ -72,17 +72,3 @@ export const loginUser =
       token: userToken,
     });
   };
-
-export const getToken = () => async (dispatch: Dispatch) => {
-  let userToken;
-  userToken = null;
-  try {
-    userToken = await AsyncStorage.getItem("userToken");
-  } catch (e) {
-    console.log(e);
-  }
-  dispatch({
-    type: GET_TOKEN,
-    token: userToken,
-  });
-};

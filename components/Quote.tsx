@@ -3,7 +3,6 @@ import styled from "styled-components/native";
 import { SingleQuoteProps } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { Props as MainPageProps } from "../screens/MainPage";
-import { Store } from "../redux/store";
 import { colors } from "./colors";
 
 const Quote: FunctionComponent<SingleQuoteProps> = (props) => {
@@ -11,9 +10,6 @@ const Quote: FunctionComponent<SingleQuoteProps> = (props) => {
   const handlePress = () => {
     navigation.navigate("SingleCharacter", { ...props.character });
   };
-
-  console.log("NEWW");
-  console.log(props);
 
   return (
     <QuotesContainer>
