@@ -14,14 +14,10 @@ const Movie: FunctionComponent<{ movie: MovieProps }> = ({ movie }) => {
 
   return (
     <NavigateButton onPress={() => handlePress()}>
-      <NameText>{movie.name}</NameText>
+      <CenterText>{movie.name}</CenterText>
     </NavigateButton>
   );
 };
-
-const NameText = styled(CenterText)`
-  font-size: 20px;
-`;
 
 const NavigateButton = styled(CustomButton)`
   background-color: ${colors.movieGreen};

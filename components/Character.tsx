@@ -15,14 +15,10 @@ const Character: FunctionComponent<{ character: CharacterProps }> = ({
   };
   return (
     <TextWrap>
-      <NameText onPress={() => handlePress()}>{character.name}</NameText>
+      <CenterText onPress={() => handlePress()}>{character.name}</CenterText>
     </TextWrap>
   );
 };
-
-const NameText = styled(CenterText)`
-  font-size: 18px;
-`;
 
 const TextWrap = styled.View`
   background-color: ${colors.characterRed};

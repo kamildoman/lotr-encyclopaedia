@@ -19,7 +19,7 @@ const Characters: FunctionComponent<Props> = () => {
 
   return (
     <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>
-      <CharactersContainer>
+      <Container>
         {characters["characters"]
           .slice(pageNumber, pageNumber + 8)
           .map((character: CharacterProps) => (
@@ -28,14 +28,10 @@ const Characters: FunctionComponent<Props> = () => {
         <NameText onPress={() => setPageNumber(pageNumber + 8)}>
           ...more
         </NameText>
-      </CharactersContainer>
+      </Container>
     </BackgroundImage>
   );
 };
-
-const CharactersContainer = styled(Container)`
-  margin-top: 20px;
-`;
 
 const NameText = styled(CenterText)`
   font-size: 26px;

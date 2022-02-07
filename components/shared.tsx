@@ -8,6 +8,7 @@ export const Container = styled.View`
   text-align: center;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 `;
 
 export const BackgroundImage = styled.ImageBackground`
@@ -21,6 +22,7 @@ export const CenterText = styled.Text`
   align-items: center;
   justify-content: center;
   color: ${colors.goldenWhite};
+  font-size: 20px;
 `;
 
 export const CustomButton = styled.TouchableOpacity`

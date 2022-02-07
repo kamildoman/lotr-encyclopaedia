@@ -1,39 +1,24 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components/native";
-import { SingleQuoteProps, CharacterProps } from "./types";
+import { SingleQuoteProps } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { Props as MainPageProps } from "../screens/MainPage";
-import { useSelector } from "react-redux";
 import { Store } from "../redux/store";
-type RootState = ReturnType<typeof Store.getState>;
 import { colors } from "./colors";
 
 const Quote: FunctionComponent<SingleQuoteProps> = (props) => {
-  const [character, setCharacter] = useState<CharacterProps>(Object);
-
-  useEffect(() => {
-    findCharacter();
-  }, []);
   const navigation = useNavigation<MainPageProps["navigation"]>();
   const handlePress = () => {
-    navigation.navigate("SingleCharacter", { ...character });
+    navigation.navigate("SingleCharacter", { ...props.character });
   };
 
-  const characters = useSelector((state: RootState) => state.charactersReducer);
-
-  async function findCharacter() {
-    let char = characters["characters"].filter((char: any) => {
-      if (char["_id"] === props.character) {
-        return true;
-      }
-    });
-    setCharacter(char[0]);
-  }
+  console.log("NEWW");
+  console.log(props);
 
   return (
     <QuotesContainer>
       <NameButton onPress={() => handlePress()}>
-        <NameText>{character?.name}</NameText>
+        <NameText>{props.character?.name}</NameText>
       </NameButton>
       <DialogText>{props.dialog}</DialogText>
     </QuotesContainer>

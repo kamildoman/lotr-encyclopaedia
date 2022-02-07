@@ -114,9 +114,10 @@ const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
   );
 };
 
-const CharacterText = styled(CenterText)`
-  font-size: 20px;
+const CharacterText = styled.Text`
   margin: 5px 10px;
+  color: ${colors.goldenBlack};
+  font-size: 20px;
 `;
 
 const DoubleArrow = styled(Animated.View)`
@@ -126,7 +127,6 @@ const DoubleArrow = styled(Animated.View)`
 `;
 
 const DetailText = styled(CenterText)`
-  font-size: 18px;
   text-align: left;
   padding: 10px 15px;
 `;

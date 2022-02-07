@@ -4,6 +4,7 @@ import { BookListProps } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { Props as MainPageProps } from "../screens/MainPage";
 import { CenterText, CustomButton } from "./shared";
+import { colors } from "./colors";
 
 const Book: FunctionComponent<BookListProps> = (props) => {
   const navigation = useNavigation<MainPageProps["navigation"]>();
@@ -12,17 +13,13 @@ const Book: FunctionComponent<BookListProps> = (props) => {
   };
   return (
     <NavigateButton onPress={() => handlePress()}>
-      <NameText>{props.name}</NameText>
+      <CenterText>{props.name}</CenterText>
     </NavigateButton>
   );
 };
 
-const NameText = styled(CenterText)`
-  font-size: 20px;
-`;
-
 const NavigateButton = styled(CustomButton)`
-  background-color: #345566;
+  background-color: ${colors.bookBlue};
 `;
 
 export default Book;

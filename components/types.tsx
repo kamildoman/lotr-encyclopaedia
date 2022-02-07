@@ -17,15 +17,6 @@ export interface MovieProps {
   runtimeInMinutes: number;
 }
 
-// quotes
-
-export interface SingleQuoteProps {
-  _id: string;
-  dialog: string;
-  character: string;
-  movie: string;
-}
-
 // characters
 
 export interface CharacterProps {
@@ -40,4 +31,13 @@ export interface CharacterProps {
   realm: string;
   spouse: string;
   wikiUrl: string;
+}
+
+// quotes
+
+export interface SingleQuoteProps {
+  _id: string;
+  dialog: string;
+  character: CharacterProps;
+  movie: string;
 }

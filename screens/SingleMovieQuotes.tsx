@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useRef, useEffect } from "react";
 import styled from "styled-components/native";
-import { SingleQuoteProps } from "../components/types";
+import { SingleQuoteProps, CharacterProps } from "../components/types";
 import Quote from "../components/Quote";
 import Background from "../assets/backgrounds/movies.jpg";
 import { AntDesign } from "@expo/vector-icons";
@@ -47,6 +47,28 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
   }, []);
 
   const quotes: any = useSelector((state: RootState) => state.quotesReducer);
+  const characters = useSelector((state: RootState) => state.charactersReducer);
+
+  function findCharacter(quote: any) {
+    let ch: CharacterProps = characters["characters"].find(
+      (char: CharacterProps) => {
+        if (char["_id"] === quote["character"]) {
+          return char;
+        }
+      }
+    )!;
+
+    return (
+      <Quote
+        key={quote["_id"]}
+        _id={quote["_id"]}
+        dialog={quote["dialog"]}
+        character={ch}
+        movie={quote["movie"]}
+      />
+    );
+  }
+
   return (
     <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>
       <RowContainer horizontal={true} pagingEnabled={true}>
@@ -83,15 +105,7 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
               }
             })
             .slice(pageNumber, pageNumber + 6)
-            .map((quote: SingleQuoteProps) => (
-              <Quote
-                key={quote["_id"]}
-                _id={quote["_id"]}
-                dialog={quote["dialog"]}
-                character={quote["character"]}
-                movie={quote["movie"]}
-              />
-            ))}
+            .map((quote: SingleQuoteProps) => findCharacter(quote))}
           <TitleText
             onPress={() => {
               setPageNumber(pageNumber + 6);
@@ -106,14 +120,12 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
 };
 
 const DetailText = styled(CenterText)`
-  font-size: 18px;
   text-align: left;
   padding: 10px 15px;
 `;
 
 const TitleText = styled(DetailText)`
   text-align: center;
-  font-size: 20px;
 `;
 
 const QuoteText = styled(TitleText)`
