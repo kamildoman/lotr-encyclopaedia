@@ -5,7 +5,7 @@ import { useFonts } from "expo-font";
 import { Provider } from "react-redux";
 import { Store } from "./redux/store";
 
-export default function App() {
+export default () => {
   const [fontsLoader] = useFonts({
     anirb: require("./assets/fonts/anirb.ttf"),
   });
@@ -18,4 +18,4 @@ export default function App() {
       <RootStack />
     </Provider>
   );
-}
+};

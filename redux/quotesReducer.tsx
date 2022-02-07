@@ -4,10 +4,10 @@ const initialState = {
   quotes: [],
 };
 
-export function quotesReducer(
+export const quotesReducer = (
   state = initialState,
   action: { type: string; payload: [] }
-) {
+) => {
   switch (action.type) {
     case SET_QUOTES:
       return {
@@ -19,4 +19,4 @@ export function quotesReducer(
     default:
       return state;
   }
-}
+};

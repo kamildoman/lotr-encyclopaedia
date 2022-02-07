@@ -4,14 +4,14 @@ const initialState = {
   characters: [],
 };
 
-export function charactersReducer(
+export const charactersReducer = (
   state = initialState,
   action: { type: string; payload: [] }
-) {
+) => {
   switch (action.type) {
     case SET_CHARACTERS:
       return { ...state, characters: action.payload };
     default:
       return state;
   }
-}
+};

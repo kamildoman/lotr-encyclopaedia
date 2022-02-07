@@ -5,10 +5,10 @@ const initialState = {
   token: null,
 };
 
-export function loginReducer(
+export const loginReducer = (
   state = initialState,
   action: { type: string; id: string; token: string }
-) {
+) => {
   switch (action.type) {
     case LOGIN:
       return {
@@ -24,4 +24,4 @@ export function loginReducer(
     default:
       return state;
   }
-}
+};

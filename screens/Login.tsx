@@ -24,7 +24,7 @@ const Login: FunctionComponent<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  async function APIData() {
+  const APIData = async () => {
     dispatch(setCharacters(await getData("/character/")));
     dispatch(setBooks(await getData("/book/")));
     dispatch(setChapters(await getData("/chapter/")));
@@ -32,23 +32,23 @@ const Login: FunctionComponent<Props> = ({ navigation }) => {
     dispatch(setQuotes(await getData("/quote/")));
     // The API has a bug, fetch "quote" doesn't give Fellowship of the Ring quotes, so I have to do it separetaly:
     dispatch(setQuotes(await getData("/movie/5cd95395de30eff6ebccde5c/quote")));
-  }
+  };
   useEffect(() => {
     APIData();
     navigate();
   }, []);
 
-  async function navigate() {
+  const navigate = async () => {
     token = await AsyncStorage.getItem("userToken");
     if (token !== null) {
       navigation.navigate("MainPage");
     }
-  }
+  };
 
-  function handleLogin() {
+  const handleLogin = () => {
     dispatch(loginUser(username, password));
     navigate();
-  }
+  };
   return (
     <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>
       <LoginContainer>

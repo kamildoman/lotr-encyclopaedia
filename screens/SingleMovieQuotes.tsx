@@ -26,21 +26,21 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
 
   const animateArrow = useRef(new Animated.Value(0)).current;
 
-  function animateArrowLeft() {
+  const animateArrowLeft = () => {
     Animated.timing(animateArrow, {
       toValue: -10,
       useNativeDriver: true,
       duration: 500,
     }).start(() => animateArrowRight());
-  }
+  };
 
-  function animateArrowRight() {
+  const animateArrowRight = () => {
     Animated.timing(animateArrow, {
       toValue: 0,
       useNativeDriver: true,
       duration: 500,
     }).start(() => animateArrowLeft());
-  }
+  };
 
   useEffect(() => {
     animateArrowLeft();
@@ -49,7 +49,7 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
   const quotes = useSelector((state: RootState) => state.quotesReducer);
   const characters = useSelector((state: RootState) => state.charactersReducer);
 
-  function findCharacter(quote: any) {
+  const findCharacter = (quote: any) => {
     const character: CharacterProps = characters["characters"].find(
       (char: CharacterProps) => char["_id"] === quote["character"]
     )!;
@@ -63,7 +63,7 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
         movie={quote["movie"]}
       />
     );
-  }
+  };
 
   return (
     <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>

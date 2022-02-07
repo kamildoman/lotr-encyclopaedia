@@ -5,10 +5,10 @@ const initialState = {
   chapters: [],
 };
 
-export function booksReducer(
+export const booksReducer = (
   state = initialState,
   action: { type: string; payload: [] }
-) {
+) => {
   switch (action.type) {
     case SET_BOOKS:
       return { ...state, books: action.payload };
@@ -17,4 +17,4 @@ export function booksReducer(
     default:
       return state;
   }
-}
+};

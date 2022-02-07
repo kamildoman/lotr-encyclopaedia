@@ -64,7 +64,7 @@ const SearchBarComponent: FunctionComponent = () => {
   const route = useRoute();
 
   // change category depending on the screen name
-  function categoryOnRefresh() {
+  const categoryOnRefresh = () => {
     if (
       route.name === "MainPage" ||
       route.name === "Books" ||
@@ -76,7 +76,7 @@ const SearchBarComponent: FunctionComponent = () => {
     } else {
       setCategory("Character");
     }
-  }
+  };
 
   useEffect(() => {
     categoryOnRefresh();
@@ -89,7 +89,7 @@ const SearchBarComponent: FunctionComponent = () => {
 
   // find items functions
 
-  function checkSimilarity(array: any[]) {
+  const checkSimilarity = (array: any[]) => {
     let toReturn;
     let previousSimilarity = 0;
     for (let i = 0; i < array.length; i++) {
@@ -113,9 +113,9 @@ const SearchBarComponent: FunctionComponent = () => {
       }
     }
     return toReturn;
-  }
+  };
 
-  function findSameItem(array: any[], goTo: any) {
+  const findSameItem = (array: any[], goTo: any) => {
     let character = checkSimilarity(array);
     if (character) {
       navigation.push(goTo, { ...(character as object) });
@@ -123,14 +123,14 @@ const SearchBarComponent: FunctionComponent = () => {
       return true;
     }
     return false;
-  }
+  };
 
-  function alert() {
+  const alert = () => {
     return Alert.alert(
       "Error",
       "Couldn't find " + search + " in category: " + category
     );
-  }
+  };
 
   const handleSearch = (): void => {
     if (category === "Book") {

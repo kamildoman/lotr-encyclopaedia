@@ -26,30 +26,30 @@ const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
 
   const quotes = useSelector((state: RootState) => state.quotesReducer);
 
-  function findQuotes() {
+  const findQuotes = () => {
     const charQuotes = quotes["quotes"].filter(
       (singleQuote) => singleQuote["character"] === route.params._id
     );
     setCharacterQuotes(charQuotes);
-  }
+  };
 
   const animateArrow = useRef(new Animated.Value(0)).current;
 
-  function animateArrowLeft() {
+  const animateArrowLeft = () => {
     Animated.timing(animateArrow, {
       toValue: -10,
       useNativeDriver: true,
       duration: 500,
     }).start(() => animateArrowRight());
-  }
+  };
 
-  function animateArrowRight() {
+  const animateArrowRight = () => {
     Animated.timing(animateArrow, {
       toValue: 0,
       useNativeDriver: true,
       duration: 500,
     }).start(() => animateArrowLeft());
-  }
+  };
 
   useEffect(() => {
     findQuotes();
