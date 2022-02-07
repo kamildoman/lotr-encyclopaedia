@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import { Dimensions } from "react-native";
 import { colors } from "./colors";
 import { Store } from "../redux/store";
+import { useDispatch } from "react-redux";
 
 export const Container = styled.View`
   width: 100%;

@@ -16,10 +16,20 @@ import {
   RootState,
 } from "../components/shared";
 import { colors } from "../components/colors";
+import { useDispatch } from "react-redux";
+import { setQuotes } from "../redux/actions";
+import { getData } from "../apiData";
 
 type Props = StackScreenProps<RootStackParamList, "SingleCharacter">;
 
 const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
+  const dispatch = useDispatch();
+
+  const createQuotes = async () => {
+    dispatch(setQuotes(await getData("/quote/")));
+    dispatch(setQuotes(await getData("/movie/5cd95395de30eff6ebccde5c/quote")));
+  };
+
   const [pageNumber, setPageNumber] = useState(0);
   const [characterQuotes, setCharacterQuotes] = useState([]);
 
@@ -51,6 +61,7 @@ const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
   };
 
   useEffect(() => {
+    createQuotes();
     findQuotes();
     animateArrowLeft();
   }, []);

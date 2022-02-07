@@ -11,6 +11,7 @@ import SingleMovieQuotes from "../screens/SingleMovieQuotes";
 import Characters from "../screens/Characters";
 import SingleCharacter from "../screens/SingleCharacter";
 import SearchBarComponent from "../components/SearchBarComponent";
+import { colors } from "../components/colors";
 
 export type RootStackParamList = {
   Login: undefined;
@@ -31,7 +32,7 @@ const RootStack: FunctionComponent = () => {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#949494",
+            backgroundColor: `${colors.gold}`,
             borderBottomWidth: 0,
             shadowColor: "transparent",
             shadowOpacity: 0,

@@ -8,53 +8,9 @@ import { Props as MainPageProps } from "../screens/MainPage";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import { RootState } from "./shared";
+import { colors } from "./colors";
 
 var stringSimilarity = require("string-similarity");
-
-const SearchContainer = styled.View`
-  width: 90%;
-  margin-right: 10px;
-  margin-left: 15px;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-`;
-
-const SearchInput = styled.TextInput`
-  margin-left: 5px;
-  background-color: #c2c2c2;
-  color: black;
-  width: 60%;
-  padding: 5px 10px;
-  font-size: 20px;
-  height: 40px;
-  border: 1px solid black;
-`;
-
-const CategoryText = styled.Text`
-  font-size: 20px;
-`;
-
-const DropdownText = styled.Text`
-  font-size: 20px;
-  padding: 6px;
-  padding-top: 5px;
-`;
-
-const SearchButton = styled.TouchableHighlight`
-  width: 39px;
-  height: 39px;
-  background-color: white;
-  align-items: center;
-  justify-content: center;
-  margin-left: 5px;
-  margin-right: 5px;
-`;
-
-const DropdownMenu = styled.TouchableHighlight`
-  background-color: #d6d6d6;
-  border: 1px solid black;
-`;
 
 const SearchBarComponent: FunctionComponent = () => {
   const navigation = useNavigation<MainPageProps["navigation"]>();
@@ -92,7 +48,7 @@ const SearchBarComponent: FunctionComponent = () => {
     let toReturn;
     let previousSimilarity = 0;
     for (let i = 0; i < array.length; i++) {
-      let similarity = stringSimilarity.compareTwoStrings(
+      const similarity = stringSimilarity.compareTwoStrings(
         array[i]["name"].toLowerCase(),
         search.toLowerCase()
       );
@@ -101,7 +57,7 @@ const SearchBarComponent: FunctionComponent = () => {
         previousSimilarity = similarity;
       } else if (category === "Character") {
         // for characters I want to check their first name also, so e.g. "frodo" will work, no need to type "frodo baggins"
-        let similarity = stringSimilarity.compareTwoStrings(
+        const similarity = stringSimilarity.compareTwoStrings(
           array[i]["name"].toLowerCase().split(" ")[0],
           search.toLowerCase().split(" ")[0]
         );
@@ -115,7 +71,7 @@ const SearchBarComponent: FunctionComponent = () => {
   };
 
   const findSameItem = (array: any[], goTo: any) => {
-    let character = checkSimilarity(array);
+    const character = checkSimilarity(array);
     if (character) {
       navigation.push(goTo, { ...(character as object) });
       setSearch("");
@@ -184,5 +140,50 @@ const SearchBarComponent: FunctionComponent = () => {
     </SearchContainer>
   );
 };
+
+const SearchContainer = styled.View`
+  width: 90%;
+  margin-right: 10px;
+  margin-left: 15px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`;
+
+const SearchInput = styled.TextInput`
+  margin-left: 5px;
+  background-color: ${colors.goldenWhite};
+  color: black;
+  width: 60%;
+  padding: 5px 10px;
+  font-size: 20px;
+  height: 40px;
+  border: 1px solid black;
+`;
+
+const CategoryText = styled.Text`
+  font-size: 20px;
+`;
+
+const DropdownText = styled.Text`
+  font-size: 20px;
+  padding: 6px;
+  padding-top: 5px;
+`;
+
+const SearchButton = styled.TouchableHighlight`
+  width: 39px;
+  height: 39px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  margin-right: 5px;
+`;
+
+const DropdownMenu = styled.TouchableHighlight`
+  background-color: ${colors.goldenWhite};
+  border: 1px solid black;
+`;
 
 export default SearchBarComponent;

@@ -1,14 +1,27 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import styled from "styled-components/native";
 import Background from "../assets/backgrounds/books.jpg";
 import { useSelector } from "react-redux";
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
 import { BackgroundImage, CenterText, RootState } from "../components/shared";
+import { useDispatch } from "react-redux";
+import { setChapters } from "../redux/actions";
+import { getData } from "../apiData";
 
 type Props = StackScreenProps<RootStackParamList, "SingleBooksChapter">;
 
 const SingleBooksChapter: FunctionComponent<Props> = ({ route }) => {
+  const dispatch = useDispatch();
+
+  const createChapters = async () => {
+    dispatch(setChapters(await getData("/chapter/")));
+  };
+
+  useEffect(() => {
+    createChapters();
+  }, []);
+
   const { chapters } = useSelector((state: RootState) => state.booksReducer);
 
   return (
