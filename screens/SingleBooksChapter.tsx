@@ -22,11 +22,10 @@ const SingleBooksChapter: FunctionComponent<Props> = ({ route }) => {
           <TitleText>{route.params.name} chapters:</TitleText>
         </TitleWrap>
         {chapters
-          .filter((singleChapter: { book: string }) => {
-            if (singleChapter["book"] === route.params._id) {
-              return true;
-            }
-          })
+          .filter(
+            (singleChapter: { book: string }) =>
+              singleChapter["book"] === route.params._id
+          )
           .map((chapter: { chapterName: string }, number: number) => (
             <TextWrap key={number}>
               <BookText key={number}>

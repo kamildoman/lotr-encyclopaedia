@@ -26,11 +26,9 @@ const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
   const quotes = useSelector((state: RootState) => state.quotesReducer);
 
   function findQuotes() {
-    let charQuotes = quotes["quotes"].filter((singleQuote) => {
-      if (singleQuote["character"] === route.params._id) {
-        return true;
-      }
-    });
+    let charQuotes = quotes["quotes"].filter(
+      (singleQuote) => singleQuote["character"] === route.params._id
+    );
     setCharacterQuotes(charQuotes);
   }
 

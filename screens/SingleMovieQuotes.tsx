@@ -51,11 +51,7 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
 
   function findCharacter(quote: any) {
     let ch: CharacterProps = characters["characters"].find(
-      (char: CharacterProps) => {
-        if (char["_id"] === quote["character"]) {
-          return char;
-        }
-      }
+      (char: CharacterProps) => char["_id"] === quote["character"]
     )!;
 
     return (
@@ -96,14 +92,11 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
         <RightContainer>
           <QuoteText>quotes: </QuoteText>
           {quotes["quotes"]
-            .filter((singleQuote: SingleQuoteProps) => {
-              if (
+            .filter(
+              (singleQuote: SingleQuoteProps) =>
                 singleQuote["movie"] === route.params._id &&
                 singleQuote["dialog"]
-              ) {
-                return true;
-              }
-            })
+            )
             .slice(pageNumber, pageNumber + 6)
             .map((quote: SingleQuoteProps) => findCharacter(quote))}
           <TitleText

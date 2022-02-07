@@ -33,15 +33,12 @@ export const setChapters = (chapters: []) => (dispatch: Dispatch) => {
 export const setMovies = (movies: []) => (dispatch: Dispatch) => {
   dispatch({
     type: SET_MOVIES,
-    payload: movies.filter((singleMovie: { name: string }) => {
-      if (
+    payload: movies.filter(
+      (singleMovie: { name: string }) =>
         singleMovie.name === "The Fellowship of the Ring" ||
         singleMovie.name === "The Two Towers " ||
         singleMovie.name === "The Return of the King"
-      ) {
-        return true;
-      }
-    }),
+    ),
   });
 };
 
