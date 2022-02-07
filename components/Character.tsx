@@ -3,26 +3,8 @@ import styled from "styled-components/native";
 import { CharacterProps } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { Props as MainPageProps } from "../screens/MainPage";
-
-const NameText = styled.Text`
-  align-items: center;
-  justify-content: center;
-  font-family: anirb;
-  text-align: center;
-  color: #fdfae0;
-  font-size: 18px;
-`;
-
-const TextWrap = styled.View`
-  background-color: #662726;
-  border: 2px solid #fef7e7;
-  width: 90%;
-  flex: 1;
-  margin: 5px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-`;
+import { CenterText } from "./shared";
+import { colors } from "./colors";
 
 const Character: FunctionComponent<{ character: CharacterProps }> = ({
   character,
@@ -37,5 +19,20 @@ const Character: FunctionComponent<{ character: CharacterProps }> = ({
     </TextWrap>
   );
 };
+
+const NameText = styled(CenterText)`
+  font-size: 18px;
+`;
+
+const TextWrap = styled.View`
+  background-color: ${colors.characterRed};
+  border: 2px solid ${colors.goldenWhite};
+  width: 90%;
+  flex: 1;
+  margin: 5px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default Character;

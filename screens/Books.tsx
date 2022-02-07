@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import styled from "styled-components/native";
 import Book from "../components/Book";
 import Background from "../assets/backgrounds/books.jpg";
 import { useSelector } from "react-redux";
@@ -8,21 +7,9 @@ import { BookListProps } from "../components/types";
 type RootState = ReturnType<typeof Store.getState>;
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
+import { Container, BackgroundImage } from "../components/shared";
 
 type Props = StackScreenProps<RootStackParamList, "Books">;
-
-const BooksContainer = styled.View`
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-`;
-
-const BooksBackground = styled.ImageBackground`
-  width: 100%;
-  height: 100%;
-`;
 
 const Books: FunctionComponent<Props> = () => {
   const { books, chapters } = useSelector(
@@ -30,8 +17,8 @@ const Books: FunctionComponent<Props> = () => {
   );
 
   return (
-    <BooksBackground source={Background} resizeMode="cover" blurRadius={3}>
-      <BooksContainer>
+    <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>
+      <Container>
         {books.map((singleBook: BookListProps) => (
           <Book
             key={singleBook["_id"]}
@@ -39,8 +26,8 @@ const Books: FunctionComponent<Props> = () => {
             name={singleBook["name"]}
           />
         ))}
-      </BooksContainer>
-    </BooksBackground>
+      </Container>
+    </BackgroundImage>
   );
 };
 

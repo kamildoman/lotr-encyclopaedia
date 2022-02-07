@@ -8,31 +8,9 @@ import { CharacterProps } from "../components/types";
 type RootState = ReturnType<typeof Store.getState>;
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
+import { Container, BackgroundImage, CenterText } from "../components/shared";
 
 type Props = StackScreenProps<RootStackParamList, "Characters">;
-
-const CharactersContainer = styled.View`
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-`;
-
-const CharactersBackground = styled.ImageBackground`
-  width: 100%;
-  height: 100%;
-`;
-
-const TestText = styled.Text`
-  text-align: center;
-  font-family: anirb;
-  font-size: 26px;
-  max-width: 100%;
-  padding: 6px;
-  margin-bottom: 20px;
-  color: white;
-`;
 
 const Characters: FunctionComponent<Props> = () => {
   const characters = useSelector((state: RootState) => state.charactersReducer);
@@ -40,19 +18,30 @@ const Characters: FunctionComponent<Props> = () => {
   const [pageNumber, setPageNumber] = useState(0);
 
   return (
-    <CharactersBackground source={Background} resizeMode="cover" blurRadius={3}>
+    <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>
       <CharactersContainer>
         {characters["characters"]
           .slice(pageNumber, pageNumber + 8)
           .map((character: CharacterProps) => (
             <Character key={character["_id"]} character={character} />
           ))}
-        <TestText onPress={() => setPageNumber(pageNumber + 8)}>
+        <NameText onPress={() => setPageNumber(pageNumber + 8)}>
           ...more
-        </TestText>
+        </NameText>
       </CharactersContainer>
-    </CharactersBackground>
+    </BackgroundImage>
   );
 };
+
+const CharactersContainer = styled(Container)`
+  margin-top: 20px;
+`;
+
+const NameText = styled(CenterText)`
+  font-size: 26px;
+  max-width: 100%;
+  padding: 6px;
+  margin-bottom: 20px;
+`;
 
 export default Characters;

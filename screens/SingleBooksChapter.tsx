@@ -6,42 +6,9 @@ import { Store } from "../redux/store";
 type RootState = ReturnType<typeof Store.getState>;
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
+import { BackgroundImage, CenterText } from "../components/shared";
 
 type Props = StackScreenProps<RootStackParamList, "SingleBooksChapter">;
-
-const ChaptersContainer = styled.ScrollView`
-  width: 100%;
-  height: 100%;
-`;
-
-const TextWrap = styled.View`
-  background-color: rgba(0, 0, 0, 0.5);
-  margin: 15px;
-  border-radius: 20px;
-`;
-
-const BookText = styled.Text`
-  font-size: 20px;
-  font-family: anirb;
-  text-align: center;
-  color: #fef7e7;
-  padding: 10px 15px;
-`;
-
-const TitleText = styled(BookText)`
-  margin-bottom: 5px;
-`;
-
-const TitleWrap = styled(TextWrap)`
-  width: 100%;
-  margin: 0;
-  border-radius: 0;
-`;
-
-const BooksBackground = styled.ImageBackground`
-  width: 100%;
-  height: 100%;
-`;
 
 const SingleBooksChapter: FunctionComponent<Props> = ({ route }) => {
   const { books, chapters } = useSelector(
@@ -49,7 +16,7 @@ const SingleBooksChapter: FunctionComponent<Props> = ({ route }) => {
   );
 
   return (
-    <BooksBackground source={Background} resizeMode="cover" blurRadius={3}>
+    <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>
       <ChaptersContainer>
         <TitleWrap>
           <TitleText>{route.params.name} chapters:</TitleText>
@@ -68,8 +35,34 @@ const SingleBooksChapter: FunctionComponent<Props> = ({ route }) => {
             </TextWrap>
           ))}
       </ChaptersContainer>
-    </BooksBackground>
+    </BackgroundImage>
   );
 };
+
+const ChaptersContainer = styled.ScrollView`
+  width: 100%;
+  height: 100%;
+`;
+
+const TextWrap = styled.View`
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 15px;
+  border-radius: 20px;
+`;
+
+const BookText = styled(CenterText)`
+  font-size: 20px;
+  padding: 10px 15px;
+`;
+
+const TitleText = styled(BookText)`
+  margin-bottom: 5px;
+`;
+
+const TitleWrap = styled(TextWrap)`
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+`;
 
 export default SingleBooksChapter;

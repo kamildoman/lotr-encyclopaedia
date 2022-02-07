@@ -1,4 +1,4 @@
-const token: string = "Bearer KZiRfoGjloEi9WkMp1AH";
+const token: string = "Bearer 2EzgPtgDeGNz2zLjBt62";
 
 const headers = {
   Accept: "application/json",

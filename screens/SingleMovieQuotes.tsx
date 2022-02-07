@@ -3,7 +3,6 @@ import styled from "styled-components/native";
 import { SingleQuoteProps } from "../components/types";
 import Quote from "../components/Quote";
 import Background from "../assets/backgrounds/movies.jpg";
-import { Dimensions } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Animated } from "react-native";
 import { useSelector } from "react-redux";
@@ -11,55 +10,16 @@ import { Store } from "../redux/store";
 type RootState = ReturnType<typeof Store.getState>;
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
+import {
+  BackgroundImage,
+  CenterText,
+  RowContainer,
+  DetailsArea,
+  RightContainer,
+} from "../components/shared";
+import { colors } from "../components/colors";
 
 type Props = StackScreenProps<RootStackParamList, "SingleMovieQuotes">;
-
-const screenWidth = Math.floor(Dimensions.get("window").width);
-
-const QuotesContainer = styled.ScrollView`
-  flex: 1;
-  flex-direction: row;
-  width: 100%;
-`;
-
-const RightContainer = styled.View`
-  flex-direction: column;
-  width: ${screenWidth}px;
-  align-items: center;
-`;
-
-const DetailText = styled.Text`
-  font-size: 18px;
-  font-family: anirb;
-  text-align: left;
-  color: #fef7e7;
-  padding: 10px 15px;
-`;
-
-const TitleText = styled(DetailText)`
-  text-align: center;
-  font-size: 20px;
-`;
-
-const QuoteText = styled(TitleText)`
-  color: #040606;
-`;
-
-const MovieDetailsArea = styled.View`
-  background-color: rgba(0, 0, 0, 0.6);
-  width: ${screenWidth}px;
-`;
-
-const MoviesBackground = styled.ImageBackground`
-  width: 100%;
-  height: 100%;
-`;
-
-const DoubleArrow = styled(Animated.View)`
-  position: absolute;
-  right: 0;
-  top: 40%;
-`;
 
 const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -88,9 +48,9 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
 
   const quotes: any = useSelector((state: RootState) => state.quotesReducer);
   return (
-    <MoviesBackground source={Background} resizeMode="cover" blurRadius={3}>
-      <QuotesContainer horizontal={true} pagingEnabled={true}>
-        <MovieDetailsArea>
+    <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>
+      <RowContainer horizontal={true} pagingEnabled={true}>
+        <DetailsArea>
           <DoubleArrow style={{ transform: [{ translateX: animateArrow }] }}>
             <AntDesign name="doubleright" size={34} color="white" />
           </DoubleArrow>
@@ -110,7 +70,7 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
             • Rottes tomatoes: {route.params.rottenTomatoesScore}%
           </DetailText>
           <DetailText>• Runtime: {route.params.runtimeInMinutes}min</DetailText>
-        </MovieDetailsArea>
+        </DetailsArea>
         <RightContainer>
           <QuoteText>quotes: </QuoteText>
           {quotes["quotes"]
@@ -140,9 +100,30 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
             ...more
           </TitleText>
         </RightContainer>
-      </QuotesContainer>
-    </MoviesBackground>
+      </RowContainer>
+    </BackgroundImage>
   );
 };
+
+const DetailText = styled(CenterText)`
+  font-size: 18px;
+  text-align: left;
+  padding: 10px 15px;
+`;
+
+const TitleText = styled(DetailText)`
+  text-align: center;
+  font-size: 20px;
+`;
+
+const QuoteText = styled(TitleText)`
+  color: ${colors.goldenBlack};
+`;
+
+const DoubleArrow = styled(Animated.View)`
+  position: absolute;
+  right: 0;
+  top: 40%;
+`;
 
 export default SingleMovieQuotes;

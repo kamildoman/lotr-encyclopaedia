@@ -6,32 +6,7 @@ import { Props as MainPageProps } from "../screens/MainPage";
 import { useSelector } from "react-redux";
 import { Store } from "../redux/store";
 type RootState = ReturnType<typeof Store.getState>;
-
-const QuotesContainer = styled.ScrollView`
-  background-color: rgba(255, 255, 255, 0.8);
-  margin: 5px;
-  width: 95%;
-  height: 15%;
-`;
-
-const NameButton = styled.TouchableOpacity`
-  align-items: center;
-  justify-content: center;
-  background-color: #2e4938;
-  border: 1px solid #fef7e7;
-`;
-
-const DialogText = styled.Text`
-  text-align: center;
-  /* font-family: anirb; */
-  font-size: 20px;
-  max-width: 100%;
-  padding: 6px;
-`;
-
-const NameText = styled(DialogText)`
-  color: #fef7e7;
-`;
+import { colors } from "./colors";
 
 const Quote: FunctionComponent<SingleQuoteProps> = (props) => {
   const [character, setCharacter] = useState<CharacterProps>(Object);
@@ -64,5 +39,30 @@ const Quote: FunctionComponent<SingleQuoteProps> = (props) => {
     </QuotesContainer>
   );
 };
+
+const QuotesContainer = styled.ScrollView`
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 5px;
+  width: 95%;
+  height: 15%;
+`;
+
+const NameButton = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.movieGreen};
+  border: 1px solid ${colors.goldenWhite};
+`;
+
+const DialogText = styled.Text`
+  text-align: center;
+  font-size: 20px;
+  max-width: 100%;
+  padding: 6px;
+`;
+
+const NameText = styled(DialogText)`
+  color: ${colors.goldenWhite};
+`;
 
 export default Quote;

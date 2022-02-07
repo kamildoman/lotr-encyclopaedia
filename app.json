@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "React native&typescript Lord of the Rings encyclopaedia",
+    "githubUrl": "https://github.com/kamildoman/lotr-encyclopaedia"
   }
 }

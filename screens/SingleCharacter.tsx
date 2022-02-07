@@ -2,7 +2,6 @@ import React, { FunctionComponent, useState, useEffect, useRef } from "react";
 import styled from "styled-components/native";
 import { SingleQuoteProps } from "../components/types";
 import Background from "../assets/backgrounds/characters.jpg";
-import { Dimensions } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Animated } from "react-native";
 import { useSelector } from "react-redux";
@@ -10,73 +9,15 @@ import { Store } from "../redux/store";
 type RootState = ReturnType<typeof Store.getState>;
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
-
+import {
+  BackgroundImage,
+  CenterText,
+  RowContainer,
+  DetailsArea,
+  RightContainer,
+} from "../components/shared";
+import { colors } from "../components/colors";
 type Props = StackScreenProps<RootStackParamList, "SingleCharacter">;
-
-const screenWidth = Math.floor(Dimensions.get("window").width);
-
-const CharacterContainer = styled.ScrollView`
-  flex: 1;
-  flex-direction: row;
-  width: 100%;
-`;
-
-const CharactersDetailsArea = styled.View`
-  background-color: rgba(0, 0, 0, 0.6);
-  width: ${screenWidth}px;
-`;
-const RightContainer = styled.View`
-  flex-direction: column;
-  width: ${screenWidth}px;
-  align-items: center;
-`;
-
-const CharacterText = styled.Text`
-  align-items: center;
-  justify-content: center;
-  /* font-family: anirb; */
-  font-size: 20px;
-  text-align: center;
-  margin: 5px 10px;
-`;
-
-const CharactersBackground = styled.ImageBackground`
-  width: 100%;
-  height: 100%;
-`;
-
-const DoubleArrow = styled(Animated.View)`
-  position: absolute;
-  right: 0;
-  top: 40%;
-`;
-
-const DetailText = styled.Text`
-  font-size: 18px;
-  font-family: anirb;
-  text-align: left;
-  color: #fef7e7;
-  padding: 10px 15px;
-`;
-
-const TitleText = styled(DetailText)`
-  text-align: center;
-  font-size: 20px;
-`;
-
-const QuoteText = styled(TitleText)`
-  color: #cdd1d1;
-`;
-
-const QuotesContainer = styled.ScrollView`
-  background-color: rgba(255, 255, 255, 0.8);
-  margin: 5px;
-  width: 95%;
-  height: 15%;
-  max-height: 100px;
-  border-radius: 10px;
-  text-align: center;
-`;
 
 const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -119,9 +60,9 @@ const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
   }, []);
 
   return (
-    <CharactersBackground source={Background} resizeMode="cover" blurRadius={3}>
-      <CharacterContainer horizontal={true} pagingEnabled={true}>
-        <CharactersDetailsArea>
+    <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>
+      <RowContainer horizontal={true} pagingEnabled={true}>
+        <DetailsArea>
           <DoubleArrow style={{ transform: [{ translateX: animateArrow }] }}>
             <AntDesign name="doubleright" size={34} color="white" />
           </DoubleArrow>
@@ -134,7 +75,7 @@ const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
           <DetailText>• Race: {route.params.race}</DetailText>
           <DetailText>• Realm: {route.params.realm}</DetailText>
           <DetailText>• Spuse: {route.params.spouse}</DetailText>
-        </CharactersDetailsArea>
+        </DetailsArea>
         <RightContainer>
           <QuoteText>quotes: </QuoteText>
 
@@ -168,9 +109,45 @@ const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
               <TitleText>No more quotes</TitleText>
             )}
         </RightContainer>
-      </CharacterContainer>
-    </CharactersBackground>
+      </RowContainer>
+    </BackgroundImage>
   );
 };
+
+const CharacterText = styled(CenterText)`
+  font-size: 20px;
+  margin: 5px 10px;
+`;
+
+const DoubleArrow = styled(Animated.View)`
+  position: absolute;
+  right: 0;
+  top: 40%;
+`;
+
+const DetailText = styled(CenterText)`
+  font-size: 18px;
+  text-align: left;
+  padding: 10px 15px;
+`;
+
+const TitleText = styled(DetailText)`
+  text-align: center;
+  font-size: 20px;
+`;
+
+const QuoteText = styled(TitleText)`
+  color: ${colors.goldenWhite};
+`;
+
+const QuotesContainer = styled.ScrollView`
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 5px;
+  width: 95%;
+  height: 15%;
+  max-height: 100px;
+  border-radius: 10px;
+  text-align: center;
+`;
 
 export default SingleCharacter;

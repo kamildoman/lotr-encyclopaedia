@@ -14,46 +14,10 @@ import {
 import { getData } from "../apiData";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Background from "../assets/backgrounds/mainpage.jpg";
+import { BackgroundImage, CustomButton } from "../components/shared";
+import { colors } from "../components/colors";
 
 export type Props = StackScreenProps<RootStackParamList, "Login">;
-
-const LoginContainer = styled.SafeAreaView`
-  flex: 1;
-  margin-top: 50px;
-  align-items: center;
-  justify-content: center;
-`;
-
-const LoginInput = styled.TextInput`
-  margin-left: 5px;
-  background-color: #c2c2c2;
-  color: black;
-  width: 80%;
-  padding: 15px;
-  font-size: 25px;
-  border: 1px solid black;
-  margin-top: 15px;
-`;
-
-const LoginButton = styled.TouchableOpacity`
-  width: 80%;
-  height: 14%;
-  margin: 15px;
-  align-items: center;
-  justify-content: center;
-  background-color: #debc72;
-  border: 2px solid #221d00;
-`;
-
-const LoginBackground = styled.ImageBackground`
-  width: 100%;
-  height: 100%;
-`;
-
-const ButtonText = styled.Text`
-  font-size: 20px;
-  font-family: anirb;
-`;
 
 const Login: FunctionComponent<Props> = ({ navigation }) => {
   let token = null;
@@ -64,8 +28,8 @@ const Login: FunctionComponent<Props> = ({ navigation }) => {
     dispatch(setCharacters(await getData("/character/")));
     dispatch(setBooks(await getData("/book/")));
     dispatch(setChapters(await getData("/chapter/")));
-    dispatch(setMovies(await getData("movie")));
-    dispatch(setQuotes(await getData("quote")));
+    dispatch(setMovies(await getData("/movie/")));
+    dispatch(setQuotes(await getData("/quote/")));
     // The API has a bug, fetch "quote" doesn't give Fellowship of the Ring quotes, so I have to do it separetaly:
     dispatch(setQuotes(await getData("/movie/5cd95395de30eff6ebccde5c/quote")));
   }
@@ -86,7 +50,7 @@ const Login: FunctionComponent<Props> = ({ navigation }) => {
     navigate();
   }
   return (
-    <LoginBackground source={Background} resizeMode="cover" blurRadius={3}>
+    <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>
       <LoginContainer>
         <LoginInput
           placeholder="username (login)"
@@ -108,8 +72,37 @@ const Login: FunctionComponent<Props> = ({ navigation }) => {
           <ButtonText>Login</ButtonText>
         </LoginButton>
       </LoginContainer>
-    </LoginBackground>
+    </BackgroundImage>
   );
 };
+
+const LoginContainer = styled.SafeAreaView`
+  flex: 1;
+  margin-top: 50px;
+  align-items: center;
+  justify-content: center;
+`;
+
+const LoginInput = styled.TextInput`
+  margin-left: 5px;
+  background-color: ${colors.goldenWhite};
+  color: black;
+  width: 80%;
+  padding: 15px;
+  font-size: 25px;
+  border: 1px solid black;
+  margin-top: 15px;
+`;
+
+const LoginButton = styled(CustomButton)`
+  height: 14%;
+  background-color: ${colors.gold};
+  border: 2px solid ${colors.goldenBlack};
+`;
+
+const ButtonText = styled.Text`
+  font-size: 20px;
+  font-family: anirb;
+`;
 
 export default Login;
