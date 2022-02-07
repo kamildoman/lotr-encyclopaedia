@@ -53,7 +53,10 @@ export const loginUser =
   (login: string, password: string) => async (dispatch: Dispatch) => {
     let userToken;
     userToken = null;
-    if (login === "login" && password === "password") {
+    if (
+      login.toLowerCase() === "login" &&
+      password.toLowerCase() === "password"
+    ) {
       try {
         userToken = "a2lkuhfailb213ll3231ksa";
         await AsyncStorage.setItem("userToken", userToken);

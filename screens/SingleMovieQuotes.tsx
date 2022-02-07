@@ -6,7 +6,6 @@ import Background from "../assets/backgrounds/movies.jpg";
 import { AntDesign } from "@expo/vector-icons";
 import { Animated } from "react-native";
 import { useSelector } from "react-redux";
-import { Store } from "../redux/store";
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
 import {
@@ -15,11 +14,11 @@ import {
   RowContainer,
   DetailsArea,
   RightContainer,
+  RootState,
 } from "../components/shared";
 import { colors } from "../components/colors";
 
 type Props = StackScreenProps<RootStackParamList, "SingleMovieQuotes">;
-type RootState = ReturnType<typeof Store.getState>;
 
 const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
   const [pageNumber, setPageNumber] = useState(0);

@@ -2,13 +2,11 @@ import React, { FunctionComponent } from "react";
 import styled from "styled-components/native";
 import Background from "../assets/backgrounds/books.jpg";
 import { useSelector } from "react-redux";
-import { Store } from "../redux/store";
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
-import { BackgroundImage, CenterText } from "../components/shared";
+import { BackgroundImage, CenterText, RootState } from "../components/shared";
 
 type Props = StackScreenProps<RootStackParamList, "SingleBooksChapter">;
-type RootState = ReturnType<typeof Store.getState>;
 
 const SingleBooksChapter: FunctionComponent<Props> = ({ route }) => {
   const { chapters } = useSelector((state: RootState) => state.booksReducer);

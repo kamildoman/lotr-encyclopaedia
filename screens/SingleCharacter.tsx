@@ -5,7 +5,6 @@ import Background from "../assets/backgrounds/characters.jpg";
 import { AntDesign } from "@expo/vector-icons";
 import { Animated } from "react-native";
 import { useSelector } from "react-redux";
-import { Store } from "../redux/store";
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
 import {
@@ -14,11 +13,11 @@ import {
   RowContainer,
   DetailsArea,
   RightContainer,
+  RootState,
 } from "../components/shared";
 import { colors } from "../components/colors";
 
 type Props = StackScreenProps<RootStackParamList, "SingleCharacter">;
-type RootState = ReturnType<typeof Store.getState>;
 
 const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
   const [pageNumber, setPageNumber] = useState(0);

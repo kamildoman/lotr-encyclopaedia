@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
 import { colors } from "./colors";
+import { Store } from "../redux/store";
 
 export const Container = styled.View`
   width: 100%;
@@ -54,3 +55,5 @@ export const RightContainer = styled.View`
   width: ${screenWidth}px;
   align-items: center;
 `;
+
+export type RootState = ReturnType<typeof Store.getState>;
