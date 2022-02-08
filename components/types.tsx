@@ -35,9 +35,16 @@ export interface CharacterProps {
 
 // quotes
 
-export interface SingleQuoteProps {
+export interface QuoteWithCharacterProps {
   _id: string;
   dialog: string;
   character: CharacterProps;
+  movie: string;
+}
+
+export interface SingleQuoteProps {
+  _id: string;
+  dialog: string;
+  character: string;
   movie: string;
 }

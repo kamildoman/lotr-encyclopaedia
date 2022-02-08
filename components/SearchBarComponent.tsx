@@ -9,6 +9,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import { RootState } from "./shared";
 import { colors } from "./colors";
+import { BookListProps, MovieProps, CharacterProps } from "./types";
+import { RootStackParamList } from "../navigators/RootStack";
 
 var stringSimilarity = require("string-similarity");
 
@@ -44,7 +46,9 @@ const SearchBarComponent: FunctionComponent = () => {
 
   // find items functions
 
-  const checkSimilarity = (array: any[]) => {
+  const checkSimilarity = (
+    array: Array<BookListProps> | Array<CharacterProps> | Array<MovieProps>
+  ) => {
     let toReturn;
     let previousSimilarity = 0;
     for (let i = 0; i < array.length; i++) {
@@ -70,10 +74,14 @@ const SearchBarComponent: FunctionComponent = () => {
     return toReturn;
   };
 
-  const findSameItem = (array: any[], goTo: any) => {
-    const character = checkSimilarity(array);
+  const findSameItem = (
+    array: Array<BookListProps> | Array<CharacterProps> | Array<MovieProps>,
+    goTo: keyof RootStackParamList
+  ) => {
+    const character: BookListProps | CharacterProps | MovieProps | undefined =
+      checkSimilarity(array);
     if (character) {
-      navigation.push(goTo, { ...(character as object) });
+      navigation.push(goTo, { ...character });
       setSearch("");
       return true;
     }

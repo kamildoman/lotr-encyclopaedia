@@ -65,6 +65,7 @@ const Login: FunctionComponent<Props> = ({ navigation }) => {
         />
 
         <LoginButton
+          testID="Login.Button"
           onPress={() => {
             handleLogin();
           }}

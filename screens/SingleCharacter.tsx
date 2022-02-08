@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useEffect, useRef } from "react";
 import styled from "styled-components/native";
-import { SingleQuoteProps } from "../components/types";
+import { QuoteWithCharacterProps } from "../components/types";
 import Background from "../assets/backgrounds/characters.jpg";
 import { AntDesign } from "@expo/vector-icons";
 import { Animated } from "react-native";
@@ -89,7 +89,7 @@ const SingleCharacter: FunctionComponent<Props> = ({ route }) => {
           {characterQuotes &&
             characterQuotes
               .slice(pageNumber, pageNumber + 5)
-              .map((quote: SingleQuoteProps) => (
+              .map((quote: QuoteWithCharacterProps) => (
                 <QuotesContainer key={quote["_id"]}>
                   <CharacterText key={quote["_id"]}>
                     {quote["dialog"]}

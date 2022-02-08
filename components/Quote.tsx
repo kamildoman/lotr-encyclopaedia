@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components/native";
-import { SingleQuoteProps } from "./types";
+import { QuoteWithCharacterProps } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { Props as MainPageProps } from "../screens/MainPage";
 import { colors } from "./colors";
 
-const Quote: FunctionComponent<SingleQuoteProps> = (props) => {
+const Quote: FunctionComponent<QuoteWithCharacterProps> = (props) => {
   const navigation = useNavigation<MainPageProps["navigation"]>();
   const handlePress = () => {
     navigation.navigate("SingleCharacter", { ...props.character });

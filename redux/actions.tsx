@@ -49,6 +49,8 @@ export const setQuotes = (quotes: []) => (dispatch: Dispatch) => {
   });
 };
 
+import { Alert } from "react-native";
+
 export const loginUser =
   (login: string, password: string) => async (dispatch: Dispatch) => {
     let userToken;
@@ -64,7 +66,7 @@ export const loginUser =
         console.log(e);
       }
     } else {
-      alert("Wrong username or password");
+      Alert.alert("Wrong username or password");
     }
     dispatch({
       type: LOGIN,

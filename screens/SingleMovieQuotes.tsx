@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useRef, useEffect } from "react";
 import styled from "styled-components/native";
-import { SingleQuoteProps, CharacterProps } from "../components/types";
+import { CharacterProps, SingleQuoteProps } from "../components/types";
 import Quote from "../components/Quote";
 import Background from "../assets/backgrounds/movies.jpg";
 import { AntDesign } from "@expo/vector-icons";
@@ -58,7 +58,7 @@ const SingleMovieQuotes: FunctionComponent<Props> = ({ route }) => {
   const quotes = useSelector((state: RootState) => state.quotesReducer);
   const characters = useSelector((state: RootState) => state.charactersReducer);
 
-  const findCharacter = (quote: any) => {
+  const findCharacter = (quote: SingleQuoteProps) => {
     const character: CharacterProps = characters["characters"].find(
       (char: CharacterProps) => char["_id"] === quote["character"]
     )!;
