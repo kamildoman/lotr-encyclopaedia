@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { StatusBar } from "expo-status-bar";
+
 import styled from "styled-components/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigators/RootStack";
@@ -13,10 +13,10 @@ export type Props = StackScreenProps<RootStackParamList, "MainPage">;
 const MainPage: FunctionComponent<Props> = ({ navigation }) => {
   return (
     <>
-      <StatusBar />
       <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>
         <Box>
           <CategoryButton
+            testID="Books.Button"
             onPress={() => {
               navigation.navigate("Books");
             }}
@@ -24,6 +24,7 @@ const MainPage: FunctionComponent<Props> = ({ navigation }) => {
             <ButtonText>Books</ButtonText>
           </CategoryButton>
           <CategoryButton
+            testID="Movies.Button"
             onPress={() => {
               navigation.navigate("Movies");
             }}
@@ -31,6 +32,7 @@ const MainPage: FunctionComponent<Props> = ({ navigation }) => {
             <ButtonText>Movies</ButtonText>
           </CategoryButton>
           <CategoryButton
+            testID="Characters.Button"
             onPress={() => {
               navigation.navigate("Characters");
             }}
@@ -38,6 +40,7 @@ const MainPage: FunctionComponent<Props> = ({ navigation }) => {
             <ButtonText>Characters</ButtonText>
           </CategoryButton>
           <LogoutButton
+            testID="Logout.Button"
             onPress={() => {
               AsyncStorage.removeItem("userToken");
               navigation.navigate("Login");

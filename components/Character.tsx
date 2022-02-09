@@ -15,7 +15,9 @@ const Character: FunctionComponent<{ character: CharacterProps }> = ({
   };
   return (
     <TextWrap>
-      <CenterText onPress={() => handlePress()}>{character.name}</CenterText>
+      <CenterText testID="navigate" onPress={() => handlePress()}>
+        {character.name}
+      </CenterText>
     </TextWrap>
   );
 };

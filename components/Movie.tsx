@@ -13,7 +13,7 @@ const Movie: FunctionComponent<{ movie: MovieProps }> = ({ movie }) => {
   };
 
   return (
-    <NavigateButton onPress={() => handlePress()}>
+    <NavigateButton testID="navigate" onPress={() => handlePress()}>
       <CenterText>{movie.name}</CenterText>
     </NavigateButton>
   );

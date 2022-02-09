@@ -6,7 +6,7 @@ const headers = {
   Authorization: token,
 };
 
-export const getData = (category?: string): Promise<any> => {
+export const getData = (category?: string): Promise<[]> => {
   return fetch("https://the-one-api.dev/v2/" + category, {
     method: "GET",
     headers: headers,

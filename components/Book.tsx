@@ -12,7 +12,7 @@ const Book: FunctionComponent<BookListProps> = (props) => {
     navigation.navigate("SingleBooksChapter", { ...props });
   };
   return (
-    <NavigateButton onPress={() => handlePress()}>
+    <NavigateButton testID="navigate" onPress={() => handlePress()}>
       <CenterText>{props.name}</CenterText>
     </NavigateButton>
   );

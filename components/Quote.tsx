@@ -13,7 +13,7 @@ const Quote: FunctionComponent<QuoteWithCharacterProps> = (props) => {
 
   return (
     <QuotesContainer>
-      <NameButton onPress={() => handlePress()}>
+      <NameButton testID="navigate" onPress={() => handlePress()}>
         <NameText>{props.character?.name}</NameText>
       </NameButton>
       <DialogText>{props.dialog}</DialogText>

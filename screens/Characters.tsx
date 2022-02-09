@@ -35,7 +35,7 @@ const Characters: FunctionComponent<Props> = () => {
 
   return (
     <BackgroundImage source={Background} resizeMode="cover" blurRadius={3}>
-      <Container>
+      <Container testID="Character.Container">
         {characters["characters"]
           .slice(pageNumber, pageNumber + 8)
           .map((character: CharacterProps) => (

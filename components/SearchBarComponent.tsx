@@ -134,11 +134,13 @@ const SearchBarComponent: FunctionComponent = () => {
         </RNPickerSelect>
       </DropdownMenu>
       <SearchInput
+        testID="input"
         placeholder="search..."
         value={search}
         onChangeText={(text) => setSearch(text)}
       />
       <SearchButton
+        testID="search"
         onPress={() => {
           handleSearch();
         }}
