@@ -12,7 +12,7 @@
 
 ```
 To install the project, navigate to the directory and run:
-- npm install --global expo-cli
+- npm install expo-cli
 
 ```
 
