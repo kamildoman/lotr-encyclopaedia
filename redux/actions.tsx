@@ -4,7 +4,6 @@ export const SET_BOOKS = "SET_BOOKS";
 export const SET_CHAPTERS = "SET_CHAPTERS";
 export const SET_QUOTES = "SET_QUOTES";
 export const LOGIN = "LOGIN";
-export const GET_TOKEN = "GET_TOKEN";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Dispatch } from "redux";
 

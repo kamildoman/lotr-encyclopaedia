@@ -1,4 +1,4 @@
-import { LOGIN, GET_TOKEN } from "./actions";
+import { LOGIN } from "./actions";
 
 const initialState = {
   user: null,
@@ -14,11 +14,6 @@ export const loginReducer = (
       return {
         ...state,
         user: action.id,
-        token: action.token,
-      };
-    case GET_TOKEN:
-      return {
-        ...state,
         token: action.token,
       };
     default:

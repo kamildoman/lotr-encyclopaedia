@@ -57,7 +57,3 @@ export const RightContainer = styled.View`
 `;
 
 export type RootState = ReturnType<typeof Store.getState>;
-
-// export const actualNav = jest.requireActual("@react-navigation/native");
-
-// export const actualNav = "aa";
